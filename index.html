@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grind Me Fine | Specialty Coffee House, Dubai</title>
+<meta name="description" content="Grind Me Fine Coffee House, Dubai. Specialty coffee, ground fresh for every cup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Concept: a roaster's notebook. Espresso-dark paper, crema type, a hand grinder you crank yourself. Mono labels like bag stamps. */
+:root{--bean:#1A120D;--roast:#2A1D15;--crema:#E9C9A0;--milk:#F6EEE3;--ember:#E2552B;--mute:#A08B78;--line:rgba(233,201,160,.16);
+--display:'Bricolage Grotesque',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bean);color:var(--milk);font-family:var(--display);font-size:17px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}p{max-width:56ch}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{font-weight:800;line-height:.92;letter-spacing:-.045em}
+em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--crema)}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border-radius:2px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-decoration:none;border:0;cursor:pointer;transition:background .25s,color .25s}
+.btn svg{width:18px;height:18px}
+.btn-c{background:var(--crema);color:var(--bean)}.btn-c:hover{background:var(--milk)}
+.btn-l{box-shadow:inset 0 0 0 1px var(--crema);color:var(--crema)}.btn-l:hover{background:var(--crema);color:var(--bean)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(26,18,13,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px}
+.logo{text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo em{font-size:22px}
+.menu{display:flex;gap:28px}.menu a{text-decoration:none}
+.nav .btn{padding:11px 16px}
+
+.hero{position:relative;min-height:calc(100svh - 64px);display:grid;align-items:center;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;width:100%;padding-block:40px}
+.hero-copy{min-width:0;position:relative;z-index:2}
+.hero h1{font-size:clamp(64px,10.5vw,170px);margin:22px 0 26px}
+.hero h1 em{display:block;font-size:.82em;margin-top:.04em}
+.hero .lead{font-size:clamp(17px,1.5vw,20px);color:var(--mute);max-width:36ch;margin-bottom:30px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.stage{position:relative;aspect-ratio:4/5;min-width:0;touch-action:pan-y}
+#g{position:absolute;inset:0;width:100%;height:100%;cursor:grab}
+#g:active{cursor:grabbing}
+.gauge{position:absolute;left:0;right:0;bottom:2%;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.gauge .bar{flex:1;height:4px;background:var(--line);position:relative;overflow:hidden}
+.gauge .bar i{position:absolute;inset:0;background:var(--ember);transform-origin:left;transform:scaleX(0)}
+#cue{position:absolute;top:6%;right:0;text-align:right;transition:opacity .4s}
+
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:18px 0}
+.ticker div{display:inline-block;animation:tk 40s linear infinite;font-size:clamp(28px,3.4vw,46px);font-weight:800;letter-spacing:-.03em}
+.ticker span{margin:0 26px}.ticker em{margin:0 26px}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+section{padding-block:clamp(80px,10vw,150px)}
+.manifesto{display:grid;grid-template-columns:200px 1fr;gap:clamp(20px,4vw,60px)}
+.manifesto p.big{font-size:clamp(30px,4.2vw,62px);font-weight:700;line-height:1.08;letter-spacing:-.035em;max-width:22ch}
+.manifesto p.big span{color:var(--mute)}
+
+.menu-s{background:var(--milk);color:var(--bean)}
+.menu-s .mono{color:#8A6E58}
+.mh{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:50px}
+.mh h2{font-size:clamp(52px,7.5vw,120px)}
+.mh h2 em{color:var(--ember)}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,5vw,80px)}
+.it{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:22px 0;border-bottom:1px solid rgba(26,18,13,.15);text-decoration:none}
+.it h3{font-size:clamp(24px,2.4vw,32px);letter-spacing:-.03em;transition:color .2s}
+.it:hover h3{color:var(--ember)}
+.it .mono{grid-column:2;grid-row:1;align-self:center;color:var(--bean)}
+.it p{grid-column:1/-1;color:#6E5A4A;font-size:16px}
+.note{margin-top:30px;font-size:15px;color:#6E5A4A}
+
+.dial{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.dial h2{font-size:clamp(46px,6vw,96px);margin:18px 0 22px}
+.dial p{color:var(--mute)}
+.sizes{display:grid;gap:10px}
+.sz{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;color:inherit;font:inherit;text-align:left}
+.sz .dots{height:18px;background-repeat:repeat-x;background-position:left center;opacity:.35;transition:opacity .3s}
+.sz[aria-pressed="true"] .dots,.sz:hover .dots{opacity:1}
+.sz b{font-size:24px;letter-spacing:-.03em}
+.sz[aria-pressed="true"] b{color:var(--ember)}
+.out{margin-top:24px;font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.4vw,32px);color:var(--crema);min-height:2.6em}
+
+.beans{background:var(--roast)}
+.bg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.bag{background:var(--roast);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:14px;min-height:360px;min-width:0;text-decoration:none;transition:background .3s}
+.bag:hover{background:#34251B}
+.bag h3{font-size:clamp(34px,3.4vw,48px)}
+.bag .notes{display:flex;gap:8px;flex-wrap:wrap}
+.bag .notes span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px;color:var(--crema)}
+.bag .go{margin-top:auto}
+
+.visit .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,6vw,90px);align-items:end}
+.visit h2{font-size:clamp(60px,10vw,170px)}
+.vr{border-top:1px solid var(--line)}
+.vr div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.vr .ctas{margin-top:26px;display:flex}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:24px}
+.dock{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;transform:translateY(160%);transition:transform .5s var(--ease)}
+.dock.show{transform:none}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .menu{display:none}
+  .hero .wrap,.dial,.visit .wrap,.board{grid-template-columns:1fr}
+  .stage{max-width:420px;width:100%;margin:0 auto}
+  .manifesto{grid-template-columns:1fr}
+  .bg{grid-template-columns:1fr}
+  .bag{min-height:0}
+}
+@media (max-width:560px){.sz{grid-template-columns:90px 1fr}.sz .mono{display:none}.nav .btn span{display:none}.vr div{grid-template-columns:1fr;gap:2px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2 0 12 0 5.5 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.4z"/></symbol></svg>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top">Grind Me <em>Fine</em></a>
+  <nav class="menu mono" aria-label="Main"><a href="#menu">Menu</a><a href="#grind">The grind</a><a href="#beans">Beans</a><a href="#visit">Visit</a></nav>
+  <a class="btn btn-c wa" data-msg="Hi Grind Me Fine! I'd like to place an order." href="#"><svg><use href="#wa"/></svg><span>Order ahead</span></a>
+</div></header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="mono">Specialty coffee house — Dubai</span>
+      <h1>Ground fresh. <em>Never before you order.</em></h1>
+      <p class="lead">Every cup starts as whole beans, ground the moment you ask for it. That's the difference between coffee and a good morning.</p>
+      <div class="ctas">
+        <a class="btn btn-c wa" data-msg="Hi Grind Me Fine! I'd like to order ahead for pick-up." href="#"><svg><use href="#wa"/></svg>Order ahead</a>
+        <a class="btn btn-l" href="#menu">See the menu</a>
+      </div>
+    </div>
+    <div class="stage">
+      <canvas id="g" aria-label="A 3D hand coffee grinder. Drag in a circle to turn the crank."></canvas>
+      <div id="cue" class="mono">Drag to grind ↻</div>
+      <div class="gauge mono"><span>Beans</span><span class="bar"><i id="fill"></i></span><span id="pct">0%</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div><span>Espresso</span><em>pulled to order</em><span>V60</span><em>slow & bright</em><span>Flat white</span><em>silky</em><span>Cold brew</span><em>steeped long</em><span>Espresso</span><em>pulled to order</em><span>V60</span><em>slow & bright</em><span>Flat white</span><em>silky</em><span>Cold brew</span><em>steeped long</em></div></div>
+
+<section>
+  <div class="wrap manifesto rv">
+    <span class="mono">01 — Why fine</span>
+    <p class="big">Coffee loses most of its aroma within minutes of grinding. <span>So we don't grind ahead. We don't keep a hopper of yesterday. We grind for your cup, and only yours.</span></p>
+  </div>
+</section>
+
+<section class="menu-s" id="menu">
+  <div class="wrap">
+    <div class="mh rv"><h2>The <em>menu</em></h2><span class="mono">02 — Tap any drink to order</span></div>
+    <div class="board">
+      <a class="it wa rv" data-msg="Hi Grind Me Fine, I'd like an espresso." href="#"><h3>Espresso</h3><span class="mono">Black</span><p>A short, intense shot. The truest taste of the bean.</p></a>
+      <a class="it wa rv" data-msg="Hi Grind Me Fine, I'd like a V60 pour-over." href="#"><h3>V60 pour-over</h3><span class="mono">Filter</span><p>Brewed by hand, slow and clean. Best for single origins.</p></a>
+      <a class="it wa rv" data-msg="Hi Grind Me Fine, I'd like a flat white." href="#"><h3>Flat white</h3><span class="mono">Milk</span><p>Double shot, thin silky milk. The one regulars come back for.</p></a>
+      <a class="it wa rv" data-msg="Hi Grind Me Fine, I'd like a Spanish latte." href="#"><h3>Spanish latte</h3><span class="mono">Sweet</span><p>Espresso, milk and a little condensed sweetness. Dubai's favourite.</p></a>
+      <a class="it wa rv" data-msg="Hi Grind Me Fine, I'd like a cortado." href="#"><h3>Cortado</h3><span class="mono">Milk</span><p>Half espresso, half warm milk. Small, balanced, strong.</p></a>
+      <a class="it wa rv" data-msg="Hi Grind Me Fine, I'd like an iced coffee." href="#"><h3>Iced &amp; cold brew</h3><span class="mono">Cold</span><p>For the other ten months of the year.</p></a>
+    </div>
+    <p class="note">Ask the barista what's on the grinder today.</p>
+  </div>
+</section>
+
+<section id="grind">
+  <div class="wrap dial">
+    <div class="rv">
+      <span class="mono">03 — Grind size</span>
+      <h2>Fine is a <em>decision,</em> not a default.</h2>
+      <p>Every brew method needs a different grind. Get it wrong and the cup turns bitter or sour. Pick a brew and see how we set the burrs.</p>
+    </div>
+    <div class="rv">
+      <div class="sizes" role="group" aria-label="Grind sizes">
+        <button class="sz" data-d="2" data-t="Fine as powdered sugar. Twenty-something seconds under pressure." aria-pressed="true"><b>Espresso</b><span class="dots"></span><span class="mono">Fine</span></button>
+        <button class="sz" data-d="4" data-t="Like table salt. Hot water poured slowly in circles." aria-pressed="false"><b>V60</b><span class="dots"></span><span class="mono">Medium-fine</span></button>
+        <button class="sz" data-d="6" data-t="Like sea salt. A few minutes' steep, then press." aria-pressed="false"><b>French press</b><span class="dots"></span><span class="mono">Coarse</span></button>
+        <button class="sz" data-d="8" data-t="Like cracked pepper. Steeped cold for many hours." aria-pressed="false"><b>Cold brew</b><span class="dots"></span><span class="mono">Extra coarse</span></button>
+      </div>
+      <p class="out" id="out" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="beans" id="beans">
+  <div class="wrap">
+    <div class="mh rv"><h2 style="font-size:clamp(46px,6vw,96px)">Take the <em>beans</em> home.</h2><span class="mono">04 — Ground to your brewer, or whole</span></div>
+    <div class="bg">
+      <a class="bag wa rv" data-msg="Hi Grind Me Fine, I'd like to buy a bag of your espresso blend." href="#"><span class="mono">House</span><h3>Espresso blend</h3><div class="notes"><span>Chocolate</span><span>Caramel</span><span>Full body</span></div><p style="color:var(--mute)">The beans behind every milk drink on our bar.</p><span class="go mono">Ask for a bag →</span></a>
+      <a class="bag wa rv" data-msg="Hi Grind Me Fine, I'd like to buy a single origin." href="#"><span class="mono">Rotating</span><h3>Single origin</h3><div class="notes"><span>Fruity</span><span>Floral</span><span>Bright</span></div><p style="color:var(--mute)">Changes with the harvest. Ask what's in this week.</p><span class="go mono">What's in now →</span></a>
+      <a class="bag wa rv" data-msg="Hi Grind Me Fine, I'd like coffee for my office." href="#"><span class="mono">For teams</span><h3>Office coffee</h3><div class="notes"><span>Bulk beans</span><span>Regular delivery</span></div><p style="color:var(--mute)">Better coffee for the whole office. Message us for a quote.</p><span class="go mono">Get a quote →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <h2 class="rv">Come <em>smell</em> it.</h2>
+    <div class="vr rv">
+      <div><span class="mono">Where</span><span>Dubai</span></div>
+      <div><span class="mono">Order</span><span>Walk in, or order ahead on WhatsApp</span></div>
+      <div><span class="mono">Ask us</span><span>Events, office orders and beans</span></div>
+      <div class="ctas"><a class="btn btn-c wa" data-msg="Hi Grind Me Fine! I'd like to order ahead for pick-up." href="#"><svg><use href="#wa"/></svg>Order ahead</a><a class="btn btn-l" href="https://www.google.com/maps/search/?api=1&query=Grind+Me+Fine+Coffee+House+Dubai" target="_blank" rel="noopener">Directions</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap mono"><span>© 2026 Grind Me Fine Coffee House</span><span>Ground fresh in Dubai</span></div></footer>
+<div class="dock" id="dock"><a class="btn btn-c wa" data-msg="Hi Grind Me Fine! I'd like to order ahead for pick-up." href="#"><svg><use href="#wa"/></svg>Order ahead</a></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var PHONE='971500000000'; // TODO: real WhatsApp number
+  function url(m){return 'https://wa.me/'+PHONE+'?text='+encodeURIComponent(m)}
+  document.querySelectorAll('.wa').forEach(function(a){a.href=url(a.dataset.msg);a.target='_blank';a.rel='noopener'});
+  var dock=document.getElementById('dock');addEventListener('scroll',function(){dock.classList.toggle('show',scrollY>innerHeight*.8)},{passive:true});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  // grind size dots
+  var out=document.getElementById('out');
+  function dotsSvg(r){var s="<svg xmlns='http://www.w3.org/2000/svg' width='"+(r*3)+"' height='18'><circle cx='"+(r*1.5)+"' cy='9' r='"+(r/2)+"' fill='%23E9C9A0'/></svg>";return 'url("data:image/svg+xml,'+s.replace(/#/g,'%23')+'")'}
+  var szs=document.querySelectorAll('.sz');
+  szs.forEach(function(b){b.querySelector('.dots').style.backgroundImage=dotsSvg(+b.dataset.d);b.addEventListener('click',function(){szs.forEach(function(o){o.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');out.textContent=b.dataset.t})});
+  out.textContent=szs[0].dataset.t;
+
+  if(!window.THREE)return;
+  var canvas=document.getElementById('g'),stage=canvas.parentElement,fill=document.getElementById('fill'),pct=document.getElementById('pct'),cue=document.getElementById('cue');
+  try{
+    var R=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+    R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.1;
+    var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(28,1,.1,100);C.position.set(0,1.2,13);C.lookAt(0,.3,0);
+    function col(h){return new THREE.Color(h).convertSRGBToLinear()}
+    var env=new THREE.Scene();env.add(new THREE.Mesh(new THREE.BoxGeometry(30,30,30),new THREE.MeshBasicMaterial({color:col(0x1a120d),side:THREE.BackSide})));
+    function panel(w,h,x,y,z,c,i){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:col(c).multiplyScalar(i),side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)}
+    panel(4,12,-9,2,4,0xFFE2C0,2.6);panel(10,2,0,9,2,0xffffff,1.4);panel(2,10,9,0,-2,0xE2552B,1.2);
+    var pm=new THREE.PMREMGenerator(R);S.environment=pm.fromScene(env,.03).texture;
+    var kl=new THREE.DirectionalLight(col(0xFFE2C0),1.4);kl.position.set(-4,6,5);S.add(kl);
+    var wood=new THREE.MeshPhysicalMaterial({color:col(0x6B3E22),roughness:.45,clearcoat:.6,clearcoatRoughness:.3});
+    var steel=new THREE.MeshPhysicalMaterial({color:col(0xD9D4CE),roughness:.18,metalness:1});
+    var brass=new THREE.MeshPhysicalMaterial({color:col(0xC9964F),roughness:.25,metalness:1});
+    var dark=new THREE.MeshStandardMaterial({color:col(0x1b1410),roughness:.7});
+    var G=new THREE.Group();S.add(G);
+    // body: lathe profile
+    var pts=[[0,-2.2],[1.15,-2.2],[1.22,-2.05],[1.22,-.4],[1.1,-.3],[1.1,-.15],[1.2,-.05],[1.2,1.2],[1.05,1.3],[0,1.3]].map(function(p){return new THREE.Vector2(p[0],p[1])});
+    var body=new THREE.Mesh(new THREE.LatheGeometry(pts,72),wood);G.add(body);
+    var band=new THREE.Mesh(new THREE.CylinderGeometry(1.24,1.24,.18,72),brass);band.position.y=-.22;G.add(band);
+    var band2=new THREE.Mesh(new THREE.CylinderGeometry(1.25,1.25,.12,72),brass);band2.position.y=-2.08;G.add(band2);
+    var top=new THREE.Mesh(new THREE.CylinderGeometry(1.05,1.22,.22,72),steel);top.position.y=1.38;G.add(top);
+    var hub=new THREE.Mesh(new THREE.CylinderGeometry(.22,.22,.4,32),steel);hub.position.y=1.65;G.add(hub);
+    // crank (rotates around y)
+    var crank=new THREE.Group();crank.position.y=1.88;G.add(crank);
+    var arm=new THREE.Mesh(new THREE.BoxGeometry(2.1,.1,.22),steel);arm.position.x=1.05;crank.add(arm);
+    var nut=new THREE.Mesh(new THREE.SphereGeometry(.2,24,16),brass);crank.add(nut);
+    var stem=new THREE.Mesh(new THREE.CylinderGeometry(.05,.05,.35,16),steel);stem.position.set(2.05,.2,0);crank.add(stem);
+    var knob=new THREE.Mesh(new THREE.SphereGeometry(.3,32,24),wood);knob.scale.set(1,1.25,1);knob.position.set(2.05,.5,0);crank.add(knob);
+    // beans on top
+    var beanGeo=new THREE.SphereGeometry(.13,16,12);beanGeo.scale(1,.65,.8);
+    var beanM=new THREE.MeshPhysicalMaterial({color:col(0x3B2213),roughness:.35,clearcoat:.5});
+    var beans=[];for(var i=0;i<18;i++){var b=new THREE.Mesh(beanGeo,beanM);var a=Math.random()*6.28,r=.35+Math.random()*.55;b.position.set(Math.cos(a)*r,1.55+Math.random()*.1,Math.sin(a)*r);b.rotation.set(Math.random()*3,Math.random()*3,0);G.add(b);beans.push(b)}
+    // grounds particles
+    var N=260,pos=new Float32Array(N*3),vel=new Float32Array(N),life=new Float32Array(N);
+    for(i=0;i<N;i++){pos[i*3+1]=-99}
+    var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    var grounds=new THREE.Points(pg,new THREE.PointsMaterial({color:col(0x5A3620),size:.06}));G.add(grounds);
+    // pile
+    var pile=new THREE.Mesh(new THREE.ConeGeometry(1,.6,48),new THREE.MeshStandardMaterial({color:col(0x4A2C19),roughness:1}));pile.position.y=-2.6;pile.scale.setScalar(.001);G.add(pile);
+    var tray=new THREE.Mesh(new THREE.CylinderGeometry(1.5,1.4,.12,64),dark);tray.position.y=-2.95;G.add(tray);
+    G.position.y=-.1;G.rotation.y=-.5;
+
+    function size(){var w=canvas.clientWidth,h=canvas.clientHeight;if(!w)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+    size();addEventListener('resize',size);
+
+    var ang=0,spin=0,last=null,dragging=false,ground=0,idle=0;
+    function center(){var r=canvas.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height*.4}}
+    canvas.addEventListener('pointerdown',function(e){dragging=true;canvas.setPointerCapture(e.pointerId);var c=center();last=Math.atan2(e.clientY-c.y,e.clientX-c.x)});
+    canvas.addEventListener('pointermove',function(e){if(!dragging)return;var c=center(),a=Math.atan2(e.clientY-c.y,e.clientX-c.x),d=a-last;if(d>Math.PI)d-=Math.PI*2;if(d<-Math.PI)d+=Math.PI*2;spin+=Math.abs(d)*.5;last=a});
+    function up(){dragging=false}canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
+    // wheel/scroll over stage also grinds a little
+    canvas.addEventListener('wheel',function(e){spin+=Math.min(Math.abs(e.deltaY)*.002,.2)},{passive:true});
+
+    var visible=true,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now(),k=0;
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(stage);
+    (function loop(t){requestAnimationFrame(loop);if(!visible)return;var tt=(t-t0)/1000;
+      if(!dragging&&ground===0&&!reduce){idle+=.016;if(idle>2.5)spin+=.012}
+      spin*=.93;ang+=spin;crank.rotation.y=-ang;
+      if(spin>.01&&ground<1){ground=Math.min(1,ground+spin*.012);cue.style.opacity=0;
+        var emit=Math.ceil(spin*30);for(var e=0;e<emit;e++){k=(k+1)%N;pos[k*3]=(Math.random()-.5)*.5;pos[k*3+1]=-2.2;pos[k*3+2]=(Math.random()-.5)*.5;vel[k]=.02+Math.random()*.03;life[k]=1}}
+      for(var i=0;i<N;i++){if(pos[i*3+1]>-90){vel[i]+=.004;pos[i*3+1]-=vel[i];if(pos[i*3+1]<-2.6-.2*Math.random()){pos[i*3+1]=-99}}}
+      pg.attributes.position.needsUpdate=true;
+      beans.forEach(function(b,j){b.visible=j/beans.length>=ground;b.rotation.y+=spin*.3});
+      pile.scale.setScalar(Math.max(.001,ground));
+      fill.style.transform='scaleX('+ground+')';pct.textContent=Math.round(ground*100)+'%';
+      if(ground>=1&&!G.userData.done){G.userData.done=1;pct.textContent='Ready';cue.textContent='Fresh. Now order it ↓';cue.style.opacity=1}
+      G.rotation.y=-.5+(reduce?0:Math.sin(tt*.4)*.15);G.position.y=-.1+(reduce?0:Math.sin(tt*1.1)*.05);
+      R.render(S,C)})(t0);
+  }catch(err){console.warn(err)}
+})();
+</script>
+</body>
+</html>
